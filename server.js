@@ -84,7 +84,7 @@ app.post('/api/verify', async (req, res) => {
         success: true, 
         message: '支付验证成功！',
         amount: amount,
-        downloadUrl: '/download'
+        downloadUrl: 'https://github.com/freeputer/autocoins/archive/refs/heads/master.zip'
       });
     } else {
       return res.status(400).json({ 
