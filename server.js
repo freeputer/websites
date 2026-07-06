@@ -30,15 +30,15 @@ app.post('/api/verify', async (req, res) => {
   const { txHash } = req.body;
 
   if (!txHash || typeof txHash !== 'string') {
-    return res.status(400).json({ success: false, message: '请提供有效的交易哈希' });
+    return res.status(400).json({ success: false, message: 'Please provide a valid transaction hash' });
   }
 
   if (!/^[0-9a-fA-F]{64}$/.test(txHash)) {
-    return res.status(400).json({ success: false, message: '交易哈希格式不正确' });
+    return res.status(400).json({ success: false, message: 'Invalid transaction hash format' });
   }
 
   if (verifiedTransactions.has(txHash)) {
-    return res.status(200).json({ success: true, message: '交易已验证，可下载软件' });
+    return res.status(200).json({ success: true, message: 'Transaction verified, ready to download' });
   }
 
   try {
@@ -58,22 +58,22 @@ app.post('/api/verify', async (req, res) => {
         const transaction = directResponse.data.data[0];
         
         if (transaction && transaction.ret && transaction.ret[0] && transaction.ret[0].contractRet === 'SUCCESS') {
-          return res.status(400).json({ success: false, message: '交易已上链但尚未被索引，请等待约1分钟后再试' });
+          return res.status(400).json({ success: false, message: 'Transaction confirmed on-chain but not yet indexed, please wait about 1 minute' });
         }
       } catch (e) {
-        console.log('直接查询交易失败:', e.message);
+        console.log('Direct query failed:', e.message);
       }
       
-      return res.status(400).json({ success: false, message: '交易未找到，请确认交易哈希正确或等待约1分钟后再试' });
+      return res.status(400).json({ success: false, message: 'Transaction not found, please verify the hash or wait about 1 minute' });
     }
 
     if (targetTx.to.toLowerCase() !== PAYMENT_ADDRESS.toLowerCase()) {
-      return res.status(400).json({ success: false, message: '交易收款地址不正确' });
+      return res.status(400).json({ success: false, message: 'Incorrect recipient address' });
     }
 
     if (targetTx.token_info && targetTx.token_info.address && 
         targetTx.token_info.address.toLowerCase() !== USDT_CONTRACT_ADDRESS.toLowerCase()) {
-      return res.status(400).json({ success: false, message: '交易代币不是USDT(TRC20)' });
+      return res.status(400).json({ success: false, message: 'Token is not USDT (TRC20)' });
     }
 
     const amount = parseFloat(targetTx.value) / 1000000;
@@ -82,20 +82,20 @@ app.post('/api/verify', async (req, res) => {
       verifiedTransactions.add(txHash);
       return res.status(200).json({ 
         success: true, 
-        message: '支付验证成功！',
+        message: 'Payment verified successfully!',
         amount: amount,
         downloadUrl: 'https://github.com/freeputer/autocoins/archive/refs/heads/master.zip'
       });
     } else {
       return res.status(400).json({ 
         success: false, 
-        message: `支付金额不足，需要 ${REQUIRED_AMOUNT} USDT，实际支付 ${amount} USDT` 
+        message: `Insufficient payment, ${REQUIRED_AMOUNT} USDT required, but ${amount} USDT received` 
       });
     }
 
   } catch (error) {
-    console.error('验证交易时出错:', error.message);
-    return res.status(500).json({ success: false, message: '验证服务暂时不可用，请稍后再试' });
+    console.error('Verification error:', error.message);
+    return res.status(500).json({ success: false, message: 'Verification service temporarily unavailable, please try again later' });
   }
 });
 
@@ -105,16 +105,16 @@ app.get('/download', (req, res) => {
   if (fs.existsSync(zipPath)) {
     res.download(zipPath, 'crypto-token-software.zip', (err) => {
       if (err) {
-        console.error('下载失败:', err);
-        res.status(500).json({ success: false, message: '下载失败，请重试' });
+        console.error('Download failed:', err);
+        res.status(500).json({ success: false, message: 'Download failed, please try again' });
       }
     });
   } else {
-    res.status(404).json({ success: false, message: '软件包不存在' });
+    res.status(404).json({ success: false, message: 'Software package not found' });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`服务器运行在 http://localhost:${PORT}`);
-  console.log(`收款地址: ${PAYMENT_ADDRESS}`);
+  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Recipient address: ${PAYMENT_ADDRESS}`);
 });

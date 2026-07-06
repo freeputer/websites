@@ -21,7 +21,7 @@ function copyAddress() {
             btn.innerText = originalText;
         }, 2000);
     }).catch(err => {
-        console.error('复制失败:', err);
+        console.error('Copy failed:', err);
     });
 }
 
@@ -32,17 +32,17 @@ async function verifyPayment() {
     const downloadLink = document.getElementById('downloadLink');
 
     if (!txHash) {
-        showResult('请输入交易哈希', 'error');
+        showResult('Please enter the transaction hash', 'error');
         return;
     }
 
     if (!/^[0-9a-fA-F]{64}$/.test(txHash)) {
-        showResult('请输入有效的交易哈希', 'error');
+        showResult('Please enter a valid transaction hash', 'error');
         return;
     }
 
     verifyBtn.disabled = true;
-    showResult('正在验证交易，请稍候...', 'loading');
+    showResult('Verifying transaction, please wait...', 'loading');
     downloadLink.style.display = 'none';
 
     try {
@@ -63,8 +63,8 @@ async function verifyPayment() {
             showResult(data.message, 'error');
         }
     } catch (error) {
-        showResult('验证失败，请稍后再试', 'error');
-        console.error('验证错误:', error);
+        showResult('Verification failed, please try again later', 'error');
+        console.error('Verification error:', error);
     } finally {
         verifyBtn.disabled = false;
     }

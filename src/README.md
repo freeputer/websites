@@ -1,63 +1,61 @@
-# CryptoToken - 虚拟货币发放软件
+# CryptoToken - Virtual Currency Software
 
-## 简介
+## Introduction
 
-CryptoToken是一个基于Node.js的虚拟货币创建和发放软件，让您可以轻松创建和管理自己的加密货币。
+CryptoToken is a Node.js-based virtual currency creation and distribution software that allows you to easily create and manage your own cryptocurrency.
 
-## 功能特性
+## Features
 
-- 一键创建代币
-- 批量发放代币
-- 安全可靠的交易系统
-- 实时余额查询
-- 完整源码支持二次开发
+- One-click token creation
+- Open source code
+- High performance
 
-## 技术栈
+## Tech Stack
 
 - Node.js ≥ 18.0.0
 - JavaScript (ES6+)
 
-## 安装步骤
+## Installation
 
-1. 确保已安装 Node.js 18.0.0 或更高版本
-2. 解压软件包
-3. 进入目录
-4. 运行演示程序
+1. Ensure Node.js 18.0.0 or higher is installed
+2. Extract the software package
+3. Navigate to the directory
+4. Run the demo program
 
 ```bash
 cd src
 node app.js
 ```
 
-## 使用说明
+## Usage
 
-### 创建代币
+### Create Token
 
 ```javascript
 const TokenCreator = require('./token-creator');
 const tokenCreator = new TokenCreator();
 
-const token = tokenCreator.createToken('代币名称', '符号', 总供应量);
+const token = tokenCreator.createToken('Token Name', 'Symbol', totalSupply);
 ```
 
-### 铸造代币
+### Mint Token
 
 ```javascript
-tokenCreator.mintToken(token.id, 地址, 数量);
+tokenCreator.mintToken(token.id, address, amount);
 ```
 
-### 转账
+### Transfer
 
 ```javascript
-tokenCreator.transferToken(token.id, 转出地址, 转入地址, 数量);
+tokenCreator.transferToken(token.id, fromAddress, toAddress, amount);
 ```
 
-### 查询余额
+### Query Balance
 
 ```javascript
-const balance = tokenCreator.getTokenBalance(token.id, 地址);
+const balance = tokenCreator.getTokenBalance(token.id, address);
 ```
 
-## 许可证
+## License
 
 MIT License

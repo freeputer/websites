@@ -1,51 +1,51 @@
-# CryptoToken - 虚拟货币发放软件销售网站
+# CryptoToken - Virtual Currency Sales Website
 
-基于 Node.js + Express 的虚拟货币销售网站，支持 USDT (TRC20) 支付和自动发货。
+A Node.js + Express based virtual currency sales website with USDT (TRC20) payment support and automatic delivery.
 
-## 功能特性
+## Features
 
-- 一键创建代币
-- 完整源码
-- 高性能
+- One-click token creation
+- Open source code
+- High performance
 
-## 技术栈
+## Tech Stack
 
 - Node.js ≥ 18.0.0
 - Express
-- TronGrid API (支付验证)
+- TronGrid API (Payment Verification)
 
-## 安装运行
+## Installation
 
 ```bash
 npm install
 npm start
 ```
 
-服务器运行在 http://localhost:3000
+Server runs at http://localhost:3000
 
-## 项目结构
+## Project Structure
 
 ```
 websites/
-├── server.js             # Express 服务器
-├── package.json          # 项目配置
-├── public/               # 前端静态资源
+├── server.js             # Express server
+├── package.json          # Project config
+├── public/               # Frontend static files
 │   ├── index.html
 │   ├── styles.css
 │   └── main.js
-└── src/                  # 软件源码
-    ├── token-creator.js  # 代币创建核心
-    ├── app.js            # 演示程序
+└── src/                  # Software source code
+    ├── token-creator.js  # Token creation core
+    ├── app.js            # Demo program
     └── README.md
 ```
 
-## 支付流程
+## Payment Flow
 
-1. 用户向收款地址支付 20 USDT (TRC20)
-2. 用户输入交易哈希进行验证
-3. 服务器调用 TronGrid API 验证交易
-4. 验证通过后显示下载链接
+1. User sends 20 USDT (TRC20) to the recipient address
+2. User enters the transaction hash for verification
+3. Server verifies the transaction via TronGrid API
+4. Download link is displayed after successful verification
 
-## 客服支持
+## Support
 
-邮箱：tworksweb@outlook.com
+Email: tworksweb@outlook.com
