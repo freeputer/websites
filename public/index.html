@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoToken - 虚拟货币发放软件</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">₿</span>
+                <span class="logo-text">CryptoToken</span>
+            </div>
+            <nav class="nav">
+                <a href="#features">功能特性</a>
+                <a href="#payment">购买方式</a>
+                <a href="#download">下载软件</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>打造属于你自己的虚拟货币</h1>
+                <p class="hero-subtitle">简单、快速、安全地创建和发放您的专属加密货币</p>
+                <div class="price-badge">
+                    <span class="price">20</span>
+                    <span class="currency">USDT</span>
+                </div>
+                <a href="#payment" class="cta-button">立即购买</a>
+            </div>
+            <div class="hero-visual">
+                <div class="crypto-animation">
+                    <div class="coin">₿</div>
+                    <div class="coin">₤</div>
+                    <div class="coin">€</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>功能特性</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>一键创建代币</h3>
+                    <p>几分钟内创建您自己的加密货币，无需编程知识</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>开源代码</h3>
+                    <p>提供完整源码，自由定制和二次开发</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>高性能</h3>
+                    <p>基于Node.js构建，处理速度快，资源占用低</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment" class="payment-section">
+            <h2>购买方式</h2>
+            <div class="payment-container">
+                <div class="payment-info">
+                    <div class="payment-box">
+                        <h3>支付信息</h3>
+                        <div class="payment-detail">
+                            <span class="label">网络</span>
+                            <span class="value">TRON (TRC20)</span>
+                        </div>
+                        <div class="payment-detail">
+                            <span class="label">金额</span>
+                            <span class="value">20 USDT</span>
+                        </div>
+                        <div class="payment-detail">
+                            <span class="label">收款地址</span>
+                            <div class="address-display">
+                                <span id="address">TRVfny686RZXBvVECy4SEDf9DFpcSTVBb2</span>
+                                <button class="copy-btn" onclick="copyAddress()">📋</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="qr-box">
+                        <h3>扫码支付</h3>
+                        <div id="qrcode"></div>
+                        <p class="qr-hint">使用TRON钱包扫描二维码支付</p>
+                    </div>
+                </div>
+
+                <div class="verification-box">
+                    <h3>支付验证</h3>
+                    <p class="verification-hint">支付完成后，请输入交易哈希进行验证</p>
+                    <p class="verification-hint">⚠️ 交易上链后需等待约1分钟索引时间</p>
+                    <input type="text" id="txHash" placeholder="请输入交易哈希(TXID)" class="tx-input">
+                    <button id="verifyBtn" class="verify-btn">验证支付</button>
+                    <div id="verifyResult" class="verify-result"></div>
+                    <a id="downloadLink" href="/download" class="download-link" style="display:none;">
+                        📥 下载软件包
+                    </a>
+                    <div class="support-info">
+                        <p>如有问题请联系客服:</p>
+                        <a href="mailto:tworksweb@outlook.com" class="support-email">tworksweb@outlook.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download-section">
+            <h2>软件下载</h2>
+            <div class="download-info">
+                <div class="download-card">
+                    <h3>运行环境要求</h3>
+                    <ul>
+                        <li>Node.js ≥ 18.0.0</li>
+                        <li>npm 或 yarn</li>
+                        <li>Windows / macOS / Linux</li>
+                    </ul>
+                </div>
+                <div class="download-card">
+                    <h3>购买后您将获得</h3>
+                    <ul>
+                        <li>完整软件源码</li>
+                        <li>详细使用文档</li>
+                        <li>技术支持</li>
+                        <li>免费更新</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2024 CryptoToken. 保留所有权利。</p>
+            <p class="support-footer">客服邮箱: <a href="mailto:tworksweb@outlook.com">tworksweb@outlook.com</a></p>
+            <p class="disclaimer">本软件仅供学习和研究使用，请遵守当地法律法规</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
